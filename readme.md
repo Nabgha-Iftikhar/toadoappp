@@ -1,12 +1,12 @@
 # todo-application 
-app contains add 
-"login,
-logout,
-create-task,
-task-view,
-delete-task,
-forget password,
-update-task"
+  app contains add 
+  "login,
+  logout,
+  create-task,
+  task-view,
+  delete-task,
+  forget password,
+  update-task"
 ##  authentication required 
 
 all the apps  requird jwt authentication, without jwt it didnt run.
