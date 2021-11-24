@@ -7,11 +7,11 @@ all the apps  requird jwt authentication, without jwt it didnt run.
  this project use progres database.
  ## Run Server Detail:
  
- command :
+ # command :
  
  python manage.py runserver 
  
- after connecting database run these commands
+# after connecting database run these commands
  
  python manage.py makemigrations 
  
