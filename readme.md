@@ -6,10 +6,15 @@ all the apps  requird jwt authentication, without jwt it didnt run.
 ##  database postgres
  this project use progres database.
  ## Run Server Detail:
+ 
  command :
+ 
  python manage.py runserver 
+ 
  after connecting database run these commands
+ 
  python manage.py makemigrations 
+ 
  python manage.py migrate
   
  # pylint result
