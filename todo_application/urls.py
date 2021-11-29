@@ -1,5 +1,4 @@
-"""todo_Application URL Configuration
-
+"""ToDO_DRF_Project URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
@@ -11,18 +10,18 @@ Class-based views
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))"""
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include,path
 from rest_framework_simplejwt import views as jwt_views
-from rest_framework import permissions
+from rest_framework import permissions ,routers
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from todo_app import views
 
-from todo_app.views import ChangePasswordView
-
-schema_view = get_schema_view(
+router = routers.DefaultRouter()
+router.register('tasks', views.CreateListTaskView, basename='task-detail')
+schema_view = get_schema_view( # pylint: disable=C0103
    openapi.Info(
       title="Snippets API",
       default_version='v1',
@@ -34,14 +33,15 @@ schema_view = get_schema_view(
    public=True,
    permission_classes=(permissions.AllowAny,),
 )
+
 urlpatterns = [
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('admin/', admin.site.urls),
     path('', include('todo_app.urls')),
-    path('auth/', include('rest_framework.urls')),
-    path('api/login /', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('', include(router.urls)),
+    path('login/', jwt_views.TokenObtainPairView.as_view(), name='login'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-    path('swagger', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('api/logout /', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/change-password/', ChangePasswordView.as_view(), name='change-password'),
-    path('api/password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+    path('api/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_verify'),
+    path('api/password_reset/', include('django_rest_passwordreset.urls',
+                                        namespace='password_reset')),
 ]

@@ -6,18 +6,19 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
+    """migrations"""
     initial = True
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
-
     operations = [
         migrations.CreateModel(
             name='Task',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True,
+                                           serialize=False,
+                                           verbose_name='ID')),
                 ('title', models.TextField(null=True)),
                 ('description', models.TextField(null=True)),
                 ('complete', models.BooleanField(default=False)),

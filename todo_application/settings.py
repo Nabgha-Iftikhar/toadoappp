@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todo_app.apps.TodoAppConfig',
     'rest_framework_simplejwt',
     'rest_framework',
     'drf_yasg',
     'django_rest_passwordreset',
+    'todo_app',
 
 ]
 
@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'todo_Application.urls'
+ROOT_URLCONF = 'todo_application.urls'
 
 TEMPLATES = [
     {
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'todo_Application.wsgi.application'
+WSGI_APPLICATION = 'todo_application.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -154,3 +154,4 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
